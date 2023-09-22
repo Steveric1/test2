@@ -5,6 +5,8 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+#include "handlerror.h"
+
 ssize_t _strchr(const char *s, int c);
 char *_strdup(const char *str);
 ssize_t _strlen(const char *str);
@@ -23,7 +25,8 @@ ssize_t _memchr(const void *s, int c, size_t n);
 void *_memcpy(void *dest, const void *src, size_t n);
 void *_memdup(const void *str, size_t n);
 void *_memset(void *dest, unsigned char chr, size_t n);
-char *num_to_str(size_t n);
+static void cnv_to_helper(char **buff, size_t m);
+char *convert_str(size_t n);
 unsigned int atou(char *s);
 
 /******SHELL MEMORY DEALLOCATION*******/
