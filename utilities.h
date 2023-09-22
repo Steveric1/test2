@@ -32,5 +32,7 @@ unsigned int atou(char *s);
 /******SHELL MEMORY DEALLOCATION*******/
 void free_all(const unsigned int n, ...);
 /******SHELL CONCATENATION FUNCTION*******/
-char *str_concat(size_t *len, const char *delim, const char *prev, const char *next);
+char *str_concat(size_t *len, const char *delim,
+		const char *prev, const char *next);
+
 #endif /*_UTILITIES_H_*/

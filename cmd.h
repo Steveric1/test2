@@ -15,9 +15,9 @@
  */
 struct command
 {
-        struct command *link;
-        struct cmd_btree *b_tree;
-        char **tokens;
+	struct command *link;
+	struct cmd_btree *b_tree;
+	char **tokens;
 };
 
 /**
@@ -28,9 +28,9 @@ struct command
  */
 struct cmd_btree
 {
-        struct cmd_btree *success;
-        struct cmd_btree *failure;
-        const char *const *ntmodified;
+	struct cmd_btree *success;
+	struct cmd_btree *failure;
+	const char *const *ntmodified;
 };
 
 command_t *_update_cmd(command_t **ptr, char *split, size_t count);
@@ -49,10 +49,10 @@ void free_command_btree(cmd_btree_t **headptr);
  */
 typedef struct cmd_t
 {
-        size_t cmd_count;
-        size_t quote_len;
-        ssize_t delim_indx;
-        quote_state state;
+	size_t cmd_count;
+	size_t quote_len;
+	ssize_t delim_indx;
+	quote_state state;
 } cmd_t;
 
 size_t cmd_to_split(char *cmd);

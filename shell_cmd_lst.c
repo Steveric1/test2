@@ -11,36 +11,36 @@
  */
 command_t *at_the_end(command_t **the_end, const char *cmd)
 {
-        command_t *new_node, *temp;
+	command_t *new_node, *temp;
 
-        if (!the_end)
-                return (NULL);
-        new_node = malloc(sizeof(command_t));
-        if (!new_node)
-                return (NULL);
-        new_node->link = NULL;
-        new_node->b_tree = NULL;
+	if (!the_end)
+		return (NULL);
+	new_node = malloc(sizeof(command_t));
+	if (!new_node)
+		return (NULL);
+	new_node->link = NULL;
+	new_node->b_tree = NULL;
 
-        new_node->tokens = my_token(cmd);
-        if (!new_node->tokens)
-        {
-                free_all(1, new_node);
-                return (NULL);
-        }
+	new_node->tokens = my_token(cmd);
+	if (!new_node->tokens)
+	{
+		free_all(1, new_node);
+		return (NULL);
+	}
 
-        if (!*the_end)
-        {
-                *the_end = new_node;
-                return (new_node);
-        }
-        else
-        {
-                temp = *the_end;
-                while (temp->link != NULL)
-                        temp = temp->link;
-                temp->link = new_node;
-        }
-        return (new_node);
+	if (!*the_end)
+	{
+		*the_end = new_node;
+		return (new_node);
+	}
+	else
+	{
+		temp = *the_end;
+		while (temp->link != NULL)
+			temp = temp->link;
+		temp->link = new_node;
+	}
+	return (new_node);
 }
 
 /**
@@ -53,18 +53,18 @@ command_t *at_the_end(command_t **the_end, const char *cmd)
  */
 void free_command_lst(command_t **head)
 {
-        command_t *next_node;
+	command_t *next_node;
 
-        while (head && *head != NULL)
-        {
-                next_node = (*head)->link;
-                free_command_btree(&((*head)->b_tree));
-                release_mem(&((*head)->tokens));
-                free_all(1, *head);
-                *head = next_node;
-        }
+	while (head && *head != NULL)
+	{
+		next_node = (*head)->link;
+		free_command_btree(&((*head)->b_tree));
+		release_mem(&((*head)->tokens));
+		free_all(1, *head);
+		*head = next_node;
+	}
 
-        *head = NULL;
+	*head = NULL;
 }
 
 /**
@@ -79,13 +79,13 @@ void free_command_lst(command_t **head)
  */
 void free_command_btree(cmd_btree_t **headptr)
 {
-        if (headptr && *headptr)
-        {
-                free_command_btree(&((*headptr)->success));
-                free_command_btree(&((*headptr)->failure));
-                (*headptr)->ntmodified = NULL;
-                (*headptr) = NULL;
-        }
+	if (headptr && *headptr)
+	{
+		free_command_btree(&((*headptr)->success));
+		free_command_btree(&((*headptr)->failure));
+		(*headptr)->ntmodified = NULL;
+		(*headptr) = NULL;
+	}
 }
 
 
@@ -101,39 +101,39 @@ void free_command_btree(cmd_btree_t **headptr)
  */
 command_t *del_cmd_at_pos(command_t **head, size_t pos)
 {
-        command_t *current = *head;
-        command_t *previous = *head;
-        size_t index_es;
+	command_t *current = *head;
+	command_t *previous = *head;
+	size_t index_es;
 
-        if (head == NULL || *head == NULL)
-                return (NULL);
+	if (head == NULL || *head == NULL)
+		return (NULL);
 
-        if (pos == 0)
-        {
-                current = (*head)->link;
-                free_command_btree(&(current->b_tree));
-                release_mem(&(current->tokens));
-                free_all(1, current);
-                (*head)->link = NULL;
-                *head = (*head)->link;
-                return (current);
-        }
-        else
-        {
-                for (index_es = 0; index_es < pos - 1; index_es++)
-                {
-                        if (previous->link == NULL)
-                                return (NULL);
-                        previous = previous->link;
-                }
-                current = previous->link;
-                previous->link = current->link;
-                free_command_btree(&(current->b_tree));
-                release_mem(&(current->tokens));
-                free_all(1, current);
-                return (current);
-        }
-        return (NULL);
+	if (pos == 0)
+	{
+		current = (*head)->link;
+		free_command_btree(&(current->b_tree));
+		release_mem(&(current->tokens));
+		free_all(1, current);
+		(*head)->link = NULL;
+		*head = (*head)->link;
+		return (current);
+	}
+	else
+	{
+		for (index_es = 0; index_es < pos - 1; index_es++)
+		{
+			if (previous->link == NULL)
+				return (NULL);
+			previous = previous->link;
+		}
+		current = previous->link;
+		previous->link = current->link;
+		free_command_btree(&(current->b_tree));
+		release_mem(&(current->tokens));
+		free_all(1, current);
+		return (current);
+	}
+	return (NULL);
 }
 
 /**
@@ -152,18 +152,18 @@ command_t *del_cmd_at_pos(command_t **head, size_t pos)
  */
 char **remove_cmd(command_t **head)
 {
-        command_t *next_node;
-        char **retrieve_tok;
+	command_t *next_node;
+	char **retrieve_tok;
 
-        if (!(head && *head))
-                return (NULL);
+	if (!(head && *head))
+		return (NULL);
 
-        retrieve_tok = (*head)->tokens;
-        next_node = (*head)->link;
-        free_command_btree(&((*head)->b_tree));
-        free_all(1, *head);
+	retrieve_tok = (*head)->tokens;
+	next_node = (*head)->link;
+	free_command_btree(&((*head)->b_tree));
+	free_all(1, *head);
 
-        *head = next_node;
-        return (retrieve_tok);
+	*head = next_node;
+	return (retrieve_tok);
 }
 
