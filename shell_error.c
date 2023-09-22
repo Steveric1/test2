@@ -1,10 +1,10 @@
 #include "handlerror.h"
 
 /**
-  * perrorl - print a formatted message to standard error
-  * @msg: error message
-  * @...: NULL-terminated list of context strings to prepend
-  */
+ * perrorl - print a formatted message to standard error
+ * @msg: error message
+ * @...: NULL-terminated list of context strings to prepend
+ */
 void perrorl(const char *msg, ...)
 {
 	const char *str;
@@ -33,17 +33,18 @@ void perrorl(const char *msg, ...)
 void handle_error(const char *av, size_t linenum, const char *error_m, ...)
 {
 	error_t err;
+
 	err.linenum_error = convert_str(linenum);
 	err.str_ret = NULL;
 	va_list arg;
 
 	if (av)
-	    write(STDERR_FILENO, av, _strlen(av));
+		write(STDERR_FILENO, av, _strlen(av));
 	write(STDERR_FILENO, ": ", 3);
 	if (err.linenum_error)
-	    write(STDERR_FILENO, err.linenum_error, _strlen(err.linenum_error));
+		write(STDERR_FILENO, err.linenum_error, _strlen(err.linenum_error));
 	write(STDERR_FILENO, ": ", 3);
-	
+
 	va_start(arg, error_m);
 	while ((err.str_ret = va_arg(arg, char *)))
 	{
@@ -53,7 +54,7 @@ void handle_error(const char *av, size_t linenum, const char *error_m, ...)
 	va_end(arg);
 
 	if (error_m)
-	   write(STDERR_FILENO, error_m, _strlen(error_m));
+		write(STDERR_FILENO, error_m, _strlen(error_m));
 	write(STDERR_FILENO, ": ", 3);
 
 	free(err.linenum_error);

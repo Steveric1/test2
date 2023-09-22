@@ -9,11 +9,19 @@
 
 void perrorl(const char *msg, ...);
 
+/**
+ * struct error - Structure to store error information.
+ * @buf: Buffer to store the error message.
+ * @len: Length of the error message.
+ * @linenum_error: Line number where the error occurred.
+ * @str_ret: String representation of the error.
+ */
+
 typedef struct error
 {
-    char *buf;
-    size_t len;
-    char *linenum_error;
+	char *buf;
+	size_t len;
+	char *linenum_error;
 	const char *str_ret;
 } error_t;
 
