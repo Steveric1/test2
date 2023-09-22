@@ -5,18 +5,19 @@
  * @s: string to be searched
  * @c: character to be located
  * Return: pointer to the first occurrence of the character c in the string s
-*/
+ */
 ssize_t _strchr(const char *s, int c)
 {
-    ssize_t i;
-    if (s == NULL)
-       return (-1);
-    for (i = 0; s[i] != '\0'; ++i)
-    {
-        if (s[i] == c)
-            return (i);
-    }
-    return (-1);
+	ssize_t i;
+
+	if (s == NULL)
+		return (-1);
+	for (i = 0; s[i] != '\0'; ++i)
+	{
+		if (s[i] == c)
+			return (i);
+	}
+	return (-1);
 }
 
 /**
