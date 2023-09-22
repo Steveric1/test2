@@ -108,14 +108,15 @@ char *_strncpy(char *dest, const char *src, size_t n)
 
 /**
  * find_char_in_str - function to find character in a string
+ * @str: The string to check
  * @ch: character to search
  * @size: size of the string to search
- * 
- * Return -1 if failed
-*/
+ *
+ * Return: -1 if failed
+ */
 ssize_t find_char_in_str(const char *str, char ch, size_t size)
 {
-    ssize_t index;
+	ssize_t index;
 
 	if (!str)
 		return (-1);
@@ -126,5 +127,5 @@ ssize_t find_char_in_str(const char *str, char ch, size_t size)
 			return (index);
 	}
 
-    return (-1);
+	return (-1);
 }
