@@ -8,37 +8,40 @@
  */
 command_t *cmd_btree(const char * const *not_modifed  __attribute__((unused)))
 {
-   return (NULL);
+	return (NULL);
 }
 
 /**
-/ * update_the_cmd - Process and update a linked list of commands from a string.
- * @cmd: The input string containing multiple commands separated by a delimiter.
- * 
- * Return: A pointer to the head of the linked list containing processed commands.
- *         NULL if the input string is empty or if memory allocation fails.
-*/
+ * _update_the_cmd - Process and update a linked
+ * list of commands from a string.
+ * @cmd: The input string containing multiple
+ * commands separated by a delimiter.
+ *
+ * Return: A pointer to the head of the linked list
+ *		containing processed commands.
+ *		NULL if the input string is empty or if memory allocation fails.
+ */
 command_t *_update_the_cmd(const char *cmd)
 {
-    command_t *head = NULL;
-    size_t count;
-    char *split = _strdup(cmd);
+	command_t *head = NULL;
+	size_t count;
+	char *split = _strdup(cmd);
 
-    if (!split)
-        return (NULL);
+	if (!split)
+		return (NULL);
 
-    count = cmd_to_split(split);
+	count = cmd_to_split(split);
 
-    if (!_update_cmd(&head, split, count))
-    {
-        free_all(1, split);
-        free_command_lst(&head);
-        return (NULL);
-    }
+	if (!_update_cmd(&head, split, count))
+	{
+		free_all(1, split);
+		free_command_lst(&head);
+		return (NULL);
+	}
 
-    free_all(1, split);
+	free_all(1, split);
 
-    return (head);
+	return (head);
 }
 
 /**
@@ -51,19 +54,19 @@ command_t *_update_the_cmd(const char *cmd)
  */
 command_t *_update_cmd(command_t **ptr, char *split, size_t count)
 {
-    command_t *tail = *ptr;
+	command_t *tail = *ptr;
 
-    while (count > 0)
-    {
-        if (split == NULL)
-            return *ptr;
-        tail = at_the_end(ptr, split);
+	while (count > 0)
+	{
+		if (split == NULL)
+			return (*ptr);
+		tail = at_the_end(ptr, split);
 
-        if (tail == NULL)
-            return NULL;
-        while (*split++)
-            ;
-        count--;          
-    }
-    return (*ptr);
+		if (tail == NULL)
+			return (NULL);
+		while (*split++)
+			;
+		count--;
+	}
+	return (*ptr);
 }
