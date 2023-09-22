@@ -5,14 +5,27 @@
 #include <stdbool.h>
 #include "utilities.h"
 
+/**
+ * enum quote - Represents different quote states in shell parsing.
+ * @QUOTE_NONE: No quoting is active.
+ * @QUOTE_WORD: Word quoting is active.
+ * @QUOTE_DOUBLE: Double-quote quoting is active.
+ * @QUOTE_SINGLE: Single-quote quoting is active.
+ * @QUOTE_ESCAPE: Escape character quoting is active.
+ *
+ * Each value in this enumeration represents a specific quote state
+ * that can occur during shell parsing. These states are used to handle
+ * different types of quoting and escape characters.
+ */
+
 typedef enum quote
 {
-    QUOTE_NONE   = 0x0,
-    QUOTE_WORD   = 0x1,
-    QUOTE_DOUBLE = 0x2,
-    QUOTE_SINGLE = 0x4,
-    QUOTE_ESCAPE = 0x8
-}quote_state;
+	QUOTE_NONE   = 0x0,
+	QUOTE_WORD   = 0x1,
+	QUOTE_DOUBLE = 0x2,
+	QUOTE_SINGLE = 0x4,
+	QUOTE_ESCAPE = 0x8
+} quote_state;
 
 typedef size_t (*quote_state_fp)(const char *, quote_state *);
 

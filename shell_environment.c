@@ -10,25 +10,25 @@
  */
 char **build_env_array(shell_dict_t *ptr)
 {
-    char **env;
-    size_t length = 0;
-    shell_dict_t *temp = ptr;
+	char **env;
+	size_t length = 0;
+	shell_dict_t *temp = ptr;
 
-    /*loop througth the list to get length*/
-    while (temp)
-    {
-        temp = temp->link;
-        ++length;
-    }
+	/*loop througth the list to get length*/
+	while (temp)
+	{
+		temp = temp->link;
+		++length;
+	}
 
-    env = malloc(sizeof(char *) * (length + 1));
-    if (!env)
-        return (NULL);
-    for (length = 0; ptr; ptr = ptr->link)
-        env[length++] = str_concat(NULL, "=", ptr->key, ptr->value);
-    env[length] = NULL;
+	env = malloc(sizeof(char *) * (length + 1));
+	if (!env)
+		return (NULL);
+	for (length = 0; ptr; ptr = ptr->link)
+		env[length++] = str_concat(NULL, "=", ptr->key, ptr->value);
+	env[length] = NULL;
 
-    return (env);
+	return (env);
 }
 
 /**
@@ -36,11 +36,12 @@ char **build_env_array(shell_dict_t *ptr)
  * @head_ptr: Pointer to the head of the shell dictionary.
  * @env: Array of environment variables.
  * @head_ptr: Pointer to the head of the shell dictionary.
- * Return: A pointer to the populated shell dictionary on success, or NULL on failure.
+ * Return: A pointer to the populated shell dictionary
+ * on success, or NULL on failure.
  */
 shell_dict_t *build_dict_from_env(shell_dict_t **head_ptr, char **env)
 {
-   shell_dict_t *tail;
+	shell_dict_t *tail;
 	char *env_str;
 	ssize_t key_len;
 
@@ -64,17 +65,20 @@ shell_dict_t *build_dict_from_env(shell_dict_t **head_ptr, char **env)
 }
 
 /**
- * build_dict_from_env_caller - Build a shell dictionary from environment variables.
+ * build_dict_from_env_caller - Build a shell
+ * dictionary from environment variables.
  * @env: Array of environment variables.
- * Return: A pointer to the populated shell dictionary on success, or NULL on failure.
+ * Return: A pointer to the populated shell
+ * dictionary on success, or NULL on failure.
  */
 shell_dict_t *build_dict_from_env_caller(char **env)
 {
-    shell_dict_t *head = NULL;
-    if (!(env && *env))
-       return (NULL);
-    
-    if (!build_dict_from_env(&head, env))
-        free_dictionary(&head);
-    return (head);
+	shell_dict_t *head = NULL;
+
+	if (!(env && *env))
+		return (NULL);
+
+	if (!build_dict_from_env(&head, env))
+		free_dictionary(&head);
+	return (head);
 }
