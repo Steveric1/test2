@@ -7,24 +7,24 @@
  * @n: size of array of string
  * Return: pointer to the first occurrence
  * of the found character
-*/
+ */
 ssize_t _memchr(const void *s, int c, size_t n)
 {
-    unsigned char *str = (unsigned char *)s;
-    size_t iterator;
+	unsigned char *str = (unsigned char *)s;
+	size_t iterator;
 
-    if (str)
+	if (str)
 	{
 		for (iterator = 0; iterator < n; iterator++)
-        {
-            if (str[iterator] == (unsigned char)c)
-            {
-               return (iterator);
-            }
-        }
+		{
+			if (str[iterator] == (unsigned char)c)
+			{
+				return (iterator);
+			}
+		}
 	}
 
-    return (-1);
+	return (-1);
 }
 
 /**
@@ -56,30 +56,30 @@ void *_memcpy(void *dest, const void *src, size_t n)
  * _memdup - memory duplicate
  * @str: string to duplicate
  * @n: size of string to duplicate
- * 
+ *
  * Return: pointer to the calling function if successful
  * or NULL is not
-*/
+ */
 void *_memdup(const void *str, size_t n)
 {
-    void *duplicate;
-    unsigned char *dup;
-    const unsigned char *src;
-    size_t iterator;
+	void *duplicate;
+	unsigned char *dup;
+	const unsigned char *src;
+	size_t iterator;
 
-    duplicate = malloc(n);
+	duplicate = malloc(n);
 
-    if (duplicate == NULL)
-        return NULL;
-    dup = duplicate;
-    src = str;
+	if (duplicate == NULL)
+		return (NULL);
+	dup = duplicate;
+	src = str;
 
-    for (iterator = 0; iterator < n; iterator++)
-    {
-        *dup++ = *src++;
-    }
+	for (iterator = 0; iterator < n; iterator++)
+	{
+		*dup++ = *src++;
+	}
 
-    return duplicate;
+	return (duplicate);
 }
 
 /**
